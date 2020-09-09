@@ -34,16 +34,18 @@ app.get('/parMoeda.json' , function(req ,res){
 });
 
 app.post('/post' ,async (req ,res) =>{
+  console.log('antes', req.body.nsel1 ,  req.body.nsel2 , req.body.ntxtq)
   moedaBase = req.body.nsel1
   moedaFinal = req.body.nsel2
   valor = req.body.ntxtq > 0 ? req.body.ntxtq : '1'
+  console.log('depois' , moedaBase , moedaFinal , valor )
+
 
    fs.writeFile('parMoeda.json', JSON.stringify([req.body.nsel1 , req.body.nsel2, req.body.ntxtq]),'utf8', (err) => {
     if (err) throw err;
     fs.readFile('parMoeda.json', 'utf8',(err, data) => {
       if (err) throw err;
-      let par = require ('./parMoeda.json')
-      
+      let par = eval(data)
       console.log(data , par);
       res.sendFile(__dirname + '/post.html')
       

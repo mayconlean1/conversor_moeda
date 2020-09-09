@@ -9,41 +9,46 @@ function atualizar(s){
 }
 
 function teste(){
-    let sel1 = document.getElementById(par[0])
-    sel1.selected = true
-    console.log(document.getElementById(par[1]))   
+    let datalist = document.getElementById('dlopc')
+    let txt1 = document.querySelector('#ctxt1')
+    console.log(datalist , txt1)   
 }
 
 const ajaxParMoeda = ()=>{
   let ajax = new XMLHttpRequest();
     ajax.open('GET' ,'parMoeda.json')
-    ajax.onreadystatechange = async function(){
+    ajax.onreadystatechange = function(){
       if (ajax.readyState === 4 && ajax.status === 200){
         par =  JSON.parse(ajax.responseText)
-        await ajaxMoedaPais()
+        ajaxMoedaPais()
       }
     };
     ajax.onreadystatechange()
     ajax.send()
 }
 
-const ajaxMoedaPais = async () => {
+const ajaxMoedaPais = () => {
   let ajax = new XMLHttpRequest();
     ajax.open('GET' , 'moeda_paises.json')
     ajax.onreadystatechange = function(){
       
       if (ajax.readyState === 4 && ajax.status === 200){
-        
+        let datalist = document.getElementById('dlopc')
         let sel1 = document.getElementById('csel1')
         let sel2 = document.getElementById('csel2')
         let tempSiglas = []
         pais =  JSON.parse(ajax.responseText)
         for(p in pais){
+          datalist.innerHTML += `
+          <option value="${p}">${pais[p].moeda}   ${pais[p].sigla}</option>
+          <option value="${pais[p].moeda}">${pais[p].sigla}</option>
+          `
           tempSiglas.push(pais[p].sigla)             
         }
         siglas = [...semRepetir(tempSiglas ,true ) ]
     
         for(s of siglas){
+          datalist.innerHTML += ` <option value="${s}"></option> `
           sel1.innerHTML += par[0] != s? `<option>${s}</option>` : `<option selected>${s}</option>`
           sel2.innerHTML += par[1] != s? `<option>${s}</option>` : `<option selected>${s}</option>`         
         } 
