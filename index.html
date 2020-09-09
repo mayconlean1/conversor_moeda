@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ptbr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de moedas</title>
+</head>
+<body  onload="load()">
+    <h1>Conversor de Moedas</h1>
+    <h2>Converter</h2>
+    <div>
+    <table>
+        <tr>
+            <td>
+                
+                <input type="text" name="" id="ctxt1" list="opcoes1"  placeholder="nome da moeda ou o país" >
+                <datalist id="opcoes1">
+                    <option id="alguma coisa">dsa</option>
+                </datalist>
+            
+            </td>
+            <td>
+                
+                <form action="/post1" method="post" name="form1" id="idform1">
+                    <img id="img1" alt src="//upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/22px-Flag_of_the_United_States.svg.png" >
+                    <select name="nsel1" id="csel1" onchange="atualizar('form1')"> 
+                       <!--  <option id="USD">USD</option>
+                        <option value="CAD">CAD</option> -->
+                    </select>
+                </form>
+            </td>
+            <td>
+                para
+            </td>
+            <td>
+                <form action="/post2" method="post" name="form2" id="idform2"></form>
+                    <select name="nsel2" id="csel2" onchange="atualizar('form2')">
+                        <!-- <option value="BRL">BRL</option>
+                        <option value="CAD">CAD</option> -->
+                    </select>
+                    <img id="img2" alt src="//upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/22px-Flag_of_Brazil.svg.png" >
+                </form>
+                
+            </td>
+            <td>
+                
+                <input type="text" name="" id="ctxt2" list="opcoes2"  placeholder="nome da moeda ou o país">
+                <datalist id="opcoes2">
+                    <option id="alguma coisa">dsa</option>
+                </datalist>
+               
+            </td>
+        </tr>
+
+    </table>
+    <form action="/post3" method="post">
+        <p>Quantia <input type="number" name="ntxtq" id="ctxtq" value="1"></p>
+    </form>
+</div>
+    <script src="script.js"></script>
+</body>
+</html>
