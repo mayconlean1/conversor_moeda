@@ -33,23 +33,32 @@ app.get('/parMoeda.json' , function(req ,res){
   res.sendFile(__dirname + '/parMoeda.json')
 });
 
-app.post('/post1' ,async (req ,res) =>{
+app.post('/post' ,async (req ,res) =>{
   moedaBase = req.body.nsel1
-  fs.writeFileSync('parMoeda.json' ,JSON.stringify([moedaBase , moedaFinal , valor]) , {encoding: 'utf-8'})
-  res.sendFile(__dirname + '/post.html')
+  moedaFinal = req.body.nsel2
+  valor = req.body.ntxtq > 0 ? req.body.ntxtq : '1'
+
+   fs.writeFile('parMoeda.json', JSON.stringify([req.body.nsel1 , req.body.nsel2, req.body.ntxtq]),'utf8', (err) => {
+    if (err) throw err;
+    fs.readFile('parMoeda.json', 'utf8',(err, data) => {
+      if (err) throw err;
+      let par = require ('./parMoeda.json')
+      
+      console.log(data , par);
+      res.sendFile(__dirname + '/post.html')
+      
+    });
+    console.log('The file has been saved!');
+    
   });
 
-app.post('/post2' ,async (req ,res) =>{
-  moedafinal = req.body.nsel2
-  fs.writeFileSync('parMoeda.json' ,JSON.stringify([moedaBase , moedaFinal , valor]) , {encoding: 'utf-8'})
-  res.sendFile(__dirname + '/post.html')
-});
+  //fs.writeFileSync('parMoeda.json' ,JSON.stringify([req.body.nsel1 , req.body.nsel2, req.body.ntxtq]) , {encoding: 'utf-8'})
+ 
+  
+  
+  });
 
-app.post('/post3' ,async (req ,res) =>{
-  valor = req.body.ntxtq > 0 ? req.body.ntxtq : '1'
-  fs.writeFileSync('parMoeda.json' ,JSON.stringify([moedaBase , moedaFinal , valor]) , {encoding: 'utf-8'})
-  res.sendFile(__dirname + '/post.html')
-});
+
 
 app.listen('8080')
 
