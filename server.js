@@ -33,6 +33,24 @@ app.get('/parMoeda.json' , function(req ,res){
   res.sendFile(__dirname + '/parMoeda.json')
 });
 
+app.get('/_imagens/eur.png' , function(req ,res){
+  res.sendFile(__dirname + '/_imagens/eur.png')
+});
+
+app.get('/_imagens/eur.png' , function(req ,res){
+  res.sendFile(__dirname + '/_imagens/eur.png')
+});
+
+app.get('/_imagens/gbp.png' , function(req ,res){
+  res.sendFile(__dirname + '/_imagens/gbp.png')
+});
+
+/*
+
+app.get('/usd.png' , function(req ,res){
+  res.sendFile(__dirname + '/usd.png')
+});
+*/
 app.post('/post' ,async (req ,res) =>{
   console.log('antes', req.body.nsel1 ,  req.body.nsel2 , req.body.ntxtq)
   moedaBase = req.body.nsel1

@@ -1,6 +1,7 @@
 var pais= ''
 var par = ''
 var siglas = []
+var dados = {}
 
 function atualizar(s){
     let form = document.getElementsByName(s)
@@ -12,6 +13,38 @@ function teste(){
     let datalist = document.getElementById('dlopc')
     let txt1 = document.querySelector('#ctxt1')
     console.log(datalist , txt1)   
+}
+
+function compararAtualizar(idtxt , idsel , idimg){
+  let txt = removerAcentos(document.getElementById(idtxt).value.replace(/ /gi, '')).toUpperCase() //idtxt getElementById('ctxt1')
+  let sel = document.getElementById(idsel) // idsel .getElementById('csel1')
+  let img = document.getElementById(idimg) // idimg
+  sel.innerHTML = ''
+  for (s of siglas){
+    if (dados[txt].sigla == s){
+      sel.innerHTML += `<option selected>${s}</option>`
+      if(dados[txt].bandeira == ''){
+        if (dados[txt].sigla == 'USD'){
+          img.src = '_imagens/usd.png'
+        }
+        else if (dados[txt].sigla == 'EUR'){
+          img.src = '_imagens/eur.png'
+        }
+        else if (dados[txt].sigla == 'GBP'){
+          img.src = '_imagens/gbp.png'
+        }
+        else{
+          img.src = ''
+        }
+      }else{
+        img.src = dados[txt].bandeira
+      }
+    }else{
+      sel.innerHTML += `<option>${s}</option>`
+    }
+    
+  }
+  console.log(dados[txt])
 }
 
 const ajaxParMoeda = ()=>{
@@ -38,10 +71,21 @@ const ajaxMoedaPais = () => {
         let sel2 = document.getElementById('csel2')
         let tempSiglas = []
         pais =  JSON.parse(ajax.responseText)
+        console.log(pais)
         for(p in pais){
+          let ps = removerAcentos(p)
+          let ms = removerAcentos(pais[p].moeda)
+          dados[p.toUpperCase().replace(/ /gi, '')] = {'sigla': pais[p].sigla , 'bandeira': pais[p].bandeira}
+          dados[ps.toUpperCase().replace(/ /gi, '')] = {'sigla': pais[p].sigla , 'bandeira': pais[p].bandeira}
+          dados[pais[p].moeda.toUpperCase().replace(/ /gi, '')] = {'sigla': pais[p].sigla , 'bandeira': pais[p].bandeira}
+          dados[ms.toUpperCase().replace(/ /gi, '')] = {'sigla': pais[p].sigla , 'bandeira': pais[p].bandeira}
+          dados[pais[p].sigla] = {'sigla': pais[p].sigla , 'bandeira': pais[p].bandeira}
+          dados.ESTADOSUNIDOS = {'sigla': 'USD' , 'bandeira': '//upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/22px-Flag_of_the_United_States.svg.png'}
           datalist.innerHTML += `
-          <option value="${p}">${pais[p].moeda}   ${pais[p].sigla}</option>
-          <option value="${pais[p].moeda}">${pais[p].sigla}</option>
+          <option value="${p}"></option>
+          <option value="${ps}"></option>
+          <option value="${pais[p].moeda}"></option>
+          <option value="${ms}"></option>
           `
           tempSiglas.push(pais[p].sigla)             
         }
@@ -51,10 +95,7 @@ const ajaxMoedaPais = () => {
           datalist.innerHTML += ` <option value="${s}"></option> `
           sel1.innerHTML += par[0] != s? `<option>${s}</option>` : `<option selected>${s}</option>`
           sel2.innerHTML += par[1] != s? `<option>${s}</option>` : `<option selected>${s}</option>`         
-        } 
-
-
-                
+        }                 
       }
     };
     ajax.onreadystatechange()
@@ -63,7 +104,6 @@ const ajaxMoedaPais = () => {
 
 var load = ()=>{
   ajaxParMoeda()
- 
 }
 
 function semRepetir(array , organizar = false){ 
@@ -92,6 +132,28 @@ function semRepetir(array , organizar = false){
       }
   }
   return organiza
+}
+
+function removerAcentos(string){ // Substitui algumas acentuações conhecidas
+  let str = string
+  const listaAcentos = {
+      'a' :'áàâãä', 
+      'e':'éèêë' , 
+      'i':'íìîï',
+      'o':'óòôõö',
+      'u':'úùûü' , 
+      'n':'ñ',
+      'c':'ç',
+      'y': 'ý'
+  }
+  for(l in listaAcentos){
+      let la = listaAcentos[l]
+      let ula = listaAcentos[l].toUpperCase()
+      let mlb = l.toUpperCase()
+      str = eval(`str.replace(/[${la}]/,"${l}")`)
+      str = eval(`str.replace(/[${ula}]/,"${mlb}")`)
+  }
+  return str
 }
 
 

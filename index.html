@@ -12,11 +12,12 @@
     <table>
         <tr>
             <td>             
-                <input type="text" name="" id="ctxt1" list="dlopc"  placeholder="nome da moeda ou o país" >        
+                <input type="text" name="" id="ctxt1" list="dlopc"  placeholder="nome da moeda ou o país" onchange="compararAtualizar('ctxt1' , 'csel1' , 'img1')" >        
             </td>
             <td>
                 <form action="/post" method="post" name="form" id="idform1">
-                    <img id="img1" alt src="//upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/22px-Flag_of_the_United_States.svg.png" >
+                    <img id="img1" alt src="//upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/22px-Flag_of_the_United_States.svg.png" > 
+                    <!-- <img  src="_imagens/eur.png"> -->
                     <select name="nsel1" id="csel1" onchange="atualizar('form')"> 
                        <!--  <option id="USD">USD</option>
                         <option value="CAD">CAD</option> -->
@@ -34,7 +35,7 @@
                     <img id="img2" alt src="//upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/22px-Flag_of_Brazil.svg.png" >
             </td>
             <td>
-                <input type="text" name="" id="ctxt2" list="dlopc"  placeholder="nome da moeda ou o país">
+                <input type="text" name="" id="ctxt2" list="dlopc"  placeholder="nome da moeda ou o país" onchange="compararAtualizar('ctxt2' , 'csel2' , 'img2')">
                              
             </td>
         </tr>
@@ -44,6 +45,7 @@
     
         <p>Quantia <input type="number" name="ntxtq" id="ctxtq" value="1"></p>
     </form>
+    
 </div>
 <datalist id="dlopc" > 
     <!-- <option value="alguma coisa">dsa</option>
