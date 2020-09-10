@@ -22,17 +22,32 @@ const robo = async () =>{
           let baseLocais = baseRoot[tr].children[4].children
                                             
           for(l in baseLocais){
-            if(isNumber(l)){                           
-              if (baseLocais[l].children[0] == undefined){
-                tempPais[baseLocais[l].textContent] = {'moeda': tempMoeda , 'sigla': tempSigla , 'bandeira': imgBandeira}
-                imgBandeira = ''
-              }else{
-                imgBandeira = baseLocais[l].children[0].src
-              }            
+            if(l != null){
+              if(isNumber(l)){               
+                if (baseLocais[l].localName == 'a'){
+                  tempPais[baseLocais[l].textContent] = {'moeda': tempMoeda , 'sigla': tempSigla , 'bandeira': imgBandeira}
+                  imgBandeira = ''
+                }
+                else if(baseLocais[l].localName == 'img'){
+                  imgBandeira = baseLocais[l].src
+                }
+                else if(baseLocais[l].localName == 'span'){
+                  imgBandeira = baseLocais[l].children[0].src
+                }                               
+                /*
+                if (baseLocais[l].children[0] == undefined){
+                  tempPais[baseLocais[l].textContent] = {'moeda': tempMoeda , 'sigla': tempSigla , 'bandeira': imgBandeira}
+                  imgBandeira = ''
+                }else{
+                  imgBandeira = baseLocais[l].children[0].src
+                }
+                */            
+              }
             }
           } 
         } 
       }
+      
       return tempPais                          
     })
     fs.writeFileSync('moeda_paises.json' , JSON.stringify(paises) )
