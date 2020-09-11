@@ -37,16 +37,16 @@ app.get('/_imagens/eur.png' , function(req ,res){
   res.sendFile(__dirname + '/_imagens/eur.png')
 });
 
-app.get('/_imagens/eur.png' , function(req ,res){
-  res.sendFile(__dirname + '/_imagens/eur.png')
+app.get('/_imagens/usd.png' , function(req ,res){
+  res.sendFile(__dirname + '/_imagens/usd.png')
 });
 
 app.get('/_imagens/gbp.png' , function(req ,res){
   res.sendFile(__dirname + '/_imagens/gbp.png')
 });
 
-/*
 
+/*
 app.get('/usd.png' , function(req ,res){
   res.sendFile(__dirname + '/usd.png')
 });

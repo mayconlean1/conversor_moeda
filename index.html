@@ -12,13 +12,13 @@
     <table>
         <tr>
             <td>             
-                <input type="text" name="" id="ctxt1" list="dlopc"  placeholder="nome da moeda ou o país" onchange="compararAtualizar('ctxt1' , 'csel1' , 'img1')" >        
+                <input type="text" id="ctxt1" list="dlopc"  placeholder="nome da moeda ou o país" onchange="compararAtualizar('ctxt1' , 'csel1' , 'img1')" >        
             </td>
             <td>
                 <form action="/post" method="post" name="form" id="idform1">
                     <img id="img1" alt src="//upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/22px-Flag_of_the_United_States.svg.png" > 
                     <!-- <img  src="_imagens/eur.png"> -->
-                    <select name="nsel1" id="csel1" onchange="atualizar('form')"> 
+                    <select name="nsel1" id="csel1" onchange="compararAtualizarSigla('csel1' , 'img1')"> 
                        <!--  <option id="USD">USD</option>
                         <option value="CAD">CAD</option> -->
                     </select>
@@ -28,14 +28,14 @@
             </td>
             <td>
                 
-                    <select name="nsel2" id="csel2" onchange="atualizar('form')">
+                    <select name="nsel2" id="csel2" onchange="compararAtualizarSigla('csel2' , 'img2')">
                         <!-- <option value="BRL">BRL</option>
                         <option value="CAD">CAD</option> -->
                     </select>
                     <img id="img2" alt src="//upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/22px-Flag_of_Brazil.svg.png" >
             </td>
             <td>
-                <input type="text" name="" id="ctxt2" list="dlopc"  placeholder="nome da moeda ou o país" onchange="compararAtualizar('ctxt2' , 'csel2' , 'img2')">
+                <input type="text" name="" id="ctxt2" list="dlopc"  placeholder="nome da moeda ou o país" onchange="compararAtualizar('ctxt2' , 'csel2' , 'img2')" >
                              
             </td>
         </tr>
@@ -43,7 +43,7 @@
     </table>
 
     
-        <p>Quantia <input type="number" name="ntxtq" id="ctxtq" value="1"></p>
+        <p>Quantia <input type="number" name="ntxtq" id="ctxtq" value="1" onchange="atualizar()"></p>
     </form>
     
 </div>
