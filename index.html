@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conversor de moedas</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body  onload="load()">
     <h1>Conversor de Moedas</h1>
     <h2>Converter</h2>
-    <div>
+    <div id="hud">
     <table>
         <tr>
             <td>             
@@ -40,17 +41,15 @@
             </td>
         </tr>
 
-    </table>
-
-    
-        <p>Quantia <input type="number" name="ntxtq" id="ctxtq" value="1" onchange="atualizar()"></p>
+    </table>   
+        <p></p>Quantia <input style="width: 90px;" type="number" name="ntxtq" id="ctxtq" value="1" onchange="atualizar()"> <span id="idmf"></span></p>
     </form>
-    
-</div>
+</div> 
 <datalist id="dlopc" > 
     <!-- <option value="alguma coisa">dsa</option>
     <option value="alguma cdsadoisa">sadsaa</option> -->
 </datalist>
-    <script src="script.js"></script>
+<script src="script.js"></script>
+<div id="resp"></div>
 </body>
 </html>

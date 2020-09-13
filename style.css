@@ -1,0 +1,30 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    
+}
+h1{
+    margin: 0px;
+    padding: 10px;
+    background-color: rgb(222, 255, 221);
+}
+h2{
+    text-align: center;
+    margin: 0px;
+    padding: 10px;
+    background-color:  rgb(191, 226, 190);
+}
+
+div#hud{
+    
+    text-align: center;
+    padding: 5px 0px 2px 20px;
+    background-color:  rgb(210, 228, 210);
+    
+}
+div#resp{
+    
+    padding: 10px;
+    background-color:  rgb(171, 245, 171);
+    margin-bottom: 0px;
+    text-align: center;
+}

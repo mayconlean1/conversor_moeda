@@ -14,3 +14,14 @@ foi implementado o 'autocomplete' na caixas de texto
 Foi corrigido do robo de 'WebScraping', para coletar os dados das imagens das bandeiras
 Foi criado uma função para retirar acentos conhecidos e adicionado na pasta '/github'
 Quando o input do texto é usado acionara filtros de acento e espaços , para acionar o select das siglas , junto com a imagem das bandeiras
+
+### 13/09/2020
+
+Foi criado um módulo com os dois robos utilizados no app, e importado para o servidor
+
+O Json('moeda_paises.json') de dados coletados pelo robo foi implementado , tambem atualizado o 'parMoeda.json' para ser acionado na URL principal 
+
+Foi implementado o conversor , utilizando as entradas do usuário
+
+Feito alguns estilos com CSS
+

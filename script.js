@@ -99,11 +99,13 @@ function compararAtualizar(idtxt , idsel , idimg){
 }
 
 const ajaxParMoeda = ()=>{
+  
   let ajax = new XMLHttpRequest();
     ajax.open('GET' ,'parMoeda.json')
     ajax.onreadystatechange = function(){
       if (ajax.readyState === 4 && ajax.status === 200){
         par =  JSON.parse(ajax.responseText)
+        
         ajaxMoedaPais()
       }
     };
@@ -117,6 +119,8 @@ const ajaxMoedaPais = () => {
     ajax.onreadystatechange = function(){
       
       if (ajax.readyState === 4 && ajax.status === 200){
+        const resp = document.getElementById('resp')
+        const idmf = document.getElementById('idmf')
         let datalist = document.getElementById('dlopc')
         let sel1 = document.getElementById('csel1')
         let sel2 = document.getElementById('csel2')
@@ -127,11 +131,11 @@ const ajaxMoedaPais = () => {
         for(p in pais){
           let ps = removerAcentos(p)
           let ms = removerAcentos(pais[p].moeda)
-          dados[p.toUpperCase().replace(/ /gi, '')] = {'sigla': pais[p].sigla , 'bandeira': pais[p].bandeira}
-          dados[ps.toUpperCase().replace(/ /gi, '')] = {'sigla': pais[p].sigla , 'bandeira': pais[p].bandeira}
-          dados[pais[p].moeda.toUpperCase().replace(/ /gi, '')] = {'sigla': pais[p].sigla , 'bandeira': pais[p].bandeira}
-          dados[ms.toUpperCase().replace(/ /gi, '')] = {'sigla': pais[p].sigla , 'bandeira': pais[p].bandeira}
-          dados[pais[p].sigla] = {'sigla': pais[p].sigla , 'bandeira': pais[p].bandeira}
+          dados[p.toUpperCase().replace(/ /gi, '')] = {'sigla': pais[p].sigla , 'bandeira': pais[p].bandeira , 'moeda':pais[p].moeda}
+          dados[ps.toUpperCase().replace(/ /gi, '')] = {'sigla': pais[p].sigla , 'bandeira': pais[p].bandeira, 'moeda':pais[p].moeda }
+          dados[pais[p].moeda.toUpperCase().replace(/ /gi, '')] = {'sigla': pais[p].sigla , 'bandeira': pais[p].bandeira , 'moeda':pais[p].moeda}
+          dados[ms.toUpperCase().replace(/ /gi, '')] = {'sigla': pais[p].sigla , 'bandeira': pais[p].bandeira , 'moeda':pais[p].moeda}
+          dados[pais[p].sigla] = {'sigla': pais[p].sigla , 'bandeira': pais[p].bandeira , 'moeda':pais[p].moeda}
           dados.ESTADOSUNIDOS = {'sigla': 'USD' , 'bandeira': '//upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/22px-Flag_of_the_United_States.svg.png'}
 
           tempData.push(p)
@@ -160,7 +164,9 @@ const ajaxMoedaPais = () => {
           sel1.innerHTML += par[0] != s? `<option>${s}</option>` : `<option selected>${s}</option>`
           sel2.innerHTML += par[1] != s? `<option>${s}</option>` : `<option selected>${s}</option>`         
         }
-
+        idmf.innerHTML = `${par[0]} (${dados[par[0]].moeda})`
+        resp.innerHTML = '<p>equivale a</p>'
+        resp.innerHTML += `<p><strong>${par[3]} ${par[1]} (${dados[par[1]].moeda})</strong></p>`
       }
     };
     ajax.onreadystatechange()
