@@ -192,7 +192,7 @@ var load = ()=>{
   document.getElementById('ctxt1').value = sessionStorage.getItem('ctxt1') != null ? sessionStorage.getItem('ctxt1') : ''
   document.getElementById('ctxt2').value = sessionStorage.getItem('ctxt2') != null != '' ? sessionStorage.getItem('ctxt2') : ''
 
-  document.getElementById('ctxtq').value = sessionStorage.getItem('img1') != null ? sessionStorage.getItem('ctxtq') : '1'
+  document.getElementById('ctxtq').value = sessionStorage.getItem('ctxtq') != null ? sessionStorage.getItem('ctxtq') : '1'
   
 
   console.log('load')
